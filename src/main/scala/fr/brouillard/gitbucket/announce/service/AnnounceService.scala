@@ -9,8 +9,7 @@ import gitbucket.core.service.AccountService
 import org.slf4j.LoggerFactory
 
 object EmailAddress {
-  // Delegates to the RFC 822/2822 parser that GitBucket's own mail-sending path
-  // (commons-email -> jakarta.mail) already relies on, instead of a hand-rolled regex.
+  // Uses InternetAddress, already used in GitBucket's mail-sending path (commons-email -> javax.mail).
   def isValid(email: String): Boolean =
     try {
       new InternetAddress(email).validate()
